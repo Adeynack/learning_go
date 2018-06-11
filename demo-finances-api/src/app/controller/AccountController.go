@@ -12,7 +12,7 @@ type AccountController struct {
 	GetAccountById gin.HandlerFunc
 }
 
-func NewAccountController(bs *service.BookService ,as *service.AccountService) *AccountController {
+func NewAccountController(bs *service.BookService, as *service.AccountService) *AccountController {
 	return &AccountController{
 		GetAccountList: bs.WithBook(getAccountList),
 		GetAccountById: as.WithAccount(getAccountById),

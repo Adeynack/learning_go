@@ -15,7 +15,7 @@ func (repo BookRepository) GetBookById(bookId int64) *model.Book {
 	return nil
 }
 
-var books = []model.Book {
+var books = []model.Book{
 	{1, "One", 1001},
 	{2, "Two", 1001},
 	{3, "Three", 1002},
