@@ -10,11 +10,17 @@ import (
 
 type AccountService struct {
 	// Dependencies
-	BookService *BookService
+	bookService *BookService
+}
+
+func NewAccountService(bookService *BookService) *AccountService {
+	return &AccountService{
+		bookService: bookService,
+	}
 }
 
 func (service AccountService) WithAccount(f func(c *gin.Context, book *Book, accountId int64)) func(*gin.Context) {
-	return service.BookService.WithBook(func(c *gin.Context, book *Book) {
+	return service.bookService.WithBook(func(c *gin.Context, book *Book) {
 		rawAccountId := c.Param("accountId")
 		accountId, err := strconv.ParseInt(rawAccountId, 10, 64)
 		if err != nil {

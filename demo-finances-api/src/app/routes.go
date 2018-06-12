@@ -1,9 +1,9 @@
 package main
 
 import (
+	. "github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
 )
 
 func registerRoutes(
@@ -22,19 +22,19 @@ func registerRoutes(
 	}
 
 	books := r.Group("/books", gin.BasicAuth(basicAuthAccounts))
-	books.GET("", bookController.GetBookList)
-	books.POST("", bookController.CreateBook)
+	books.GET("", bookController.GetBookList())
+	books.POST("", bookController.CreateBook())
 
 	bookById := books.Group("/:bookId")
-	bookById.GET("", bookController.GetBookById)
-	bookById.PUT("", bookController.UpdateBookById)
-	bookById.DELETE("", bookController.DeleteBookById)
+	bookById.GET("", bookController.GetBookById())
+	bookById.PUT("", bookController.UpdateBookById())
+	bookById.DELETE("", bookController.DeleteBookById())
 
 	accounts := bookById.Group("accounts")
-	accounts.GET("", accountController.GetAccountList)
+	accounts.GET("", accountController.GetAccountList())
 
 	accountById := accounts.Group("/:accountId")
-	accountById.GET("", accountController.GetAccountById)
+	accountById.GET("", accountController.GetAccountById())
 
 	return r
 }

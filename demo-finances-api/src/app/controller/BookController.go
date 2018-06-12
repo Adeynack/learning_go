@@ -8,39 +8,41 @@ import (
 )
 
 type BookController struct {
-	GetBookList    gin.HandlerFunc
-	CreateBook     gin.HandlerFunc
-	GetBookById    gin.HandlerFunc
-	UpdateBookById gin.HandlerFunc
-	DeleteBookById gin.HandlerFunc
+	bookService *BookService
 }
 
-func NewBookController(s *BookService) *BookController {
+func NewBookController(bookService *BookService) *BookController {
 	return &BookController{
-		GetBookList:    getBookList,
-		CreateBook:     createBook,
-		GetBookById:    s.WithBook(getBookById),
-		UpdateBookById: s.WithBook(updateBookById),
-		DeleteBookById: s.WithBook(deleteBookById),
+		bookService: bookService,
 	}
 }
 
-func getBookList(c *gin.Context) {
-	c.String(http.StatusOK, "List of books")
+func (ctrl BookController) GetBookList() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.String(http.StatusOK, "List of books")
+	}
 }
 
-func createBook(c *gin.Context) {
-	c.String(http.StatusCreated, "New book")
+func (ctrl BookController) CreateBook() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.String(http.StatusCreated, "New book")
+	}
 }
 
-func getBookById(c *gin.Context, book *Book) {
-	c.String(http.StatusOK, "Getting book with ID %v", book.Id)
+func (ctrl BookController) GetBookById() gin.HandlerFunc {
+	return ctrl.bookService.WithBook(func(c *gin.Context, book *Book) {
+		c.String(http.StatusOK, "Getting book with ID %v", book.Id)
+	})
 }
 
-func updateBookById(c *gin.Context, book *Book) {
-	c.String(http.StatusOK, "Updated book with ID %v", book.Id)
+func (ctrl BookController) UpdateBookById() gin.HandlerFunc {
+	return ctrl.bookService.WithBook(func(c *gin.Context, book *Book) {
+		c.String(http.StatusOK, "Updated book with ID %v", book.Id)
+	})
 }
 
-func deleteBookById(c *gin.Context, book *Book) {
-	c.String(http.StatusOK, "Delete book with ID %v", book.Id)
+func (ctrl BookController) DeleteBookById() gin.HandlerFunc {
+	return ctrl.bookService.WithBook(func(c *gin.Context, book *Book) {
+		c.String(http.StatusOK, "Delete book with ID %v", book.Id)
+	})
 }

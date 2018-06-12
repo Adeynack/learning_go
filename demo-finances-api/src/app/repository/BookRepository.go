@@ -3,7 +3,6 @@ package repository
 import . "github.com/adeynack/learning_go/demo-finances-api/src/app/model"
 
 type BookRepository struct {
-	// Dependencies
 }
 
 func (repo BookRepository) GetBookById(bookId int64) *Book {
