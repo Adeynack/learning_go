@@ -2,8 +2,8 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/adeynack/learning_go/demo-finances-api/src/app/service"
-	"github.com/adeynack/learning_go/demo-finances-api/src/app/model"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/app/service"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/app/model"
 	"net/http"
 )
 
@@ -15,7 +15,7 @@ type BookController struct {
 	DeleteBookById gin.HandlerFunc
 }
 
-func NewBookController(s *service.BookService) *BookController {
+func NewBookController(s *BookService) *BookController {
 	return &BookController{
 		GetBookList:    getBookList,
 		CreateBook:     createBook,
@@ -33,14 +33,14 @@ func createBook(c *gin.Context) {
 	c.String(http.StatusCreated, "New book")
 }
 
-func getBookById(c *gin.Context, book *model.Book) {
+func getBookById(c *gin.Context, book *Book) {
 	c.String(http.StatusOK, "Getting book with ID %v", book.Id)
 }
 
-func updateBookById(c *gin.Context, book *model.Book) {
+func updateBookById(c *gin.Context, book *Book) {
 	c.String(http.StatusOK, "Updated book with ID %v", book.Id)
 }
 
-func deleteBookById(c *gin.Context, book *model.Book) {
+func deleteBookById(c *gin.Context, book *Book) {
 	c.String(http.StatusOK, "Delete book with ID %v", book.Id)
 }

@@ -3,12 +3,12 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
 )
 
 func registerRoutes(
-	bookController *controller.BookController,
-	accountController *controller.AccountController,
+	bookController *BookController,
+	accountController *AccountController,
 ) *gin.Engine {
 	r := gin.Default()
 

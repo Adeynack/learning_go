@@ -5,16 +5,16 @@ import (
 	"strconv"
 	"fmt"
 	"net/http"
-	"github.com/adeynack/learning_go/demo-finances-api/src/app/repository"
-	"github.com/adeynack/learning_go/demo-finances-api/src/app/model"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/app/repository"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/app/model"
 )
 
 type BookService struct {
 	// Dependencies
-	BookRepository repository.BookRepository
+	BookRepository BookRepository
 }
 
-func (service *BookService) WithBook(f func(c *gin.Context, book *model.Book)) func(*gin.Context) {
+func (service *BookService) WithBook(f func(c *gin.Context, book *Book)) func(*gin.Context) {
 	return func(c *gin.Context) {
 		rawBookId := c.Param("bookId")
 		bookId, err := strconv.ParseInt(rawBookId, 10, 64)
