@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-app/controller"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
