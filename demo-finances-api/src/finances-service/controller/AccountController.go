@@ -8,11 +8,11 @@ import (
 )
 
 type AccountController struct {
-	bookService    *BookService
-	accountService *AccountService
+	bookService    BookService
+	accountService AccountService
 }
 
-func NewAccountController(bookService *BookService, accountService *AccountService) *AccountController {
+func NewAccountController(bookService BookService, accountService AccountService) *AccountController {
 	return &AccountController{
 		bookService:    bookService,
 		accountService: accountService,

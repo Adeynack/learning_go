@@ -9,17 +9,22 @@ import (
 	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/model"
 )
 
-type BookService struct {
-	bookRepository *BookRepository
+type BookService interface {
+	WithBookId(f func(c *gin.Context, bookId int64)) gin.HandlerFunc
+	WithBook(f func(c *gin.Context, book *Book)) gin.HandlerFunc
 }
 
-func NewBookService(bookRepository *BookRepository) *BookService {
-	return &BookService{
+func NewBookService(bookRepository BookRepository) BookService {
+	return &bookService{
 		bookRepository: bookRepository,
 	}
 }
 
-func (service *BookService) WithBookId(f func(c *gin.Context, bookId int64)) gin.HandlerFunc {
+type bookService struct {
+	bookRepository BookRepository
+}
+
+func (service *bookService) WithBookId(f func(c *gin.Context, bookId int64)) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		rawBookId := c.Param("bookId")
 		bookId, err := strconv.ParseInt(rawBookId, 10, 64)
@@ -32,7 +37,7 @@ func (service *BookService) WithBookId(f func(c *gin.Context, bookId int64)) gin
 	}
 }
 
-func (service *BookService) WithBook(f func(c *gin.Context, book *Book)) gin.HandlerFunc {
+func (service *bookService) WithBook(f func(c *gin.Context, book *Book)) gin.HandlerFunc {
 	return service.WithBookId(func(c *gin.Context, bookId int64) {
 		book := service.bookRepository.GetBookById(bookId)
 		if book == nil {

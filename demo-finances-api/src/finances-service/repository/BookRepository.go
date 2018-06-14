@@ -2,10 +2,18 @@ package repository
 
 import . "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/model"
 
-type BookRepository struct {
+type BookRepository interface {
+	GetBookById(bookId int64) *Book
 }
 
-func (repo BookRepository) GetBookById(bookId int64) *Book {
+func NewBookRepository() BookRepository {
+	return &bookRepository{}
+}
+
+type bookRepository struct {
+}
+
+func (repo bookRepository) GetBookById(bookId int64) *Book {
 	for _, b := range books {
 		if b.Id == bookId {
 			return &b

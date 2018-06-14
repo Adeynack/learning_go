@@ -8,10 +8,10 @@ import (
 )
 
 type BookController struct {
-	bookService *BookService
+	bookService BookService
 }
 
-func NewBookController(bookService *BookService) *BookController {
+func NewBookController(bookService BookService) *BookController {
 	return &BookController{
 		bookService: bookService,
 	}
