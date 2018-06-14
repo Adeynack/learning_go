@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"fmt"
 	"net/http"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-app/repository"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-app/model"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/repository"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/model"
 )
 
 type BookService struct {

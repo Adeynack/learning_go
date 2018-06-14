@@ -1,6 +1,6 @@
 package repository
 
-import . "github.com/adeynack/learning_go/demo-finances-api/src/finances-app/model"
+import . "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/model"
 
 type BookRepository struct {
 }

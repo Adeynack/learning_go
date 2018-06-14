@@ -2,8 +2,8 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-app/service"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-app/model"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/service"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/model"
 	"net/http"
 )
 
