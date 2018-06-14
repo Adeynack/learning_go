@@ -8,25 +8,21 @@ import (
 )
 
 type AccountController struct {
-	bookService    *BookService
-	accountService *AccountService
+	GetAccountList gin.HandlerFunc
+	GetAccountById gin.HandlerFunc
 }
 
-func NewAccountController(bookService *BookService, accountService *AccountService) *AccountController {
+func NewAccountController(bs *BookService, as *AccountService) *AccountController {
 	return &AccountController{
-		bookService:    bookService,
-		accountService: accountService,
+		GetAccountList: bs.WithBook(getAccountList),
+		GetAccountById: as.WithAccount(getAccountById),
 	}
 }
 
-func (ctrl AccountController) GetAccountList() gin.HandlerFunc {
-	return ctrl.bookService.WithBook(func(c *gin.Context, book *Book) {
-		c.String(http.StatusOK, "List of accounts for book %v", book.Id)
-	})
+func getAccountList(c *gin.Context, book *Book) {
+	c.String(http.StatusOK, "List of accounts for book %v", book.Id)
 }
 
-func (ctrl AccountController) GetAccountById() gin.HandlerFunc {
-	return ctrl.accountService.WithAccount(func(c *gin.Context, book *Book, accountId int64) {
-		c.String(http.StatusOK, "Account %v in book %v", accountId, book.Id)
-	})
+func getAccountById(c *gin.Context, book *Book, accountId int64) {
+	c.String(http.StatusOK, "Account %v in book %v", accountId, book.Id)
 }

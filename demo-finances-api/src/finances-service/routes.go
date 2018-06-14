@@ -4,6 +4,10 @@ import (
 	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/controller"
 	"github.com/gin-gonic/gin"
 	"net/http"
+<<<<<<< HEAD:demo-finances-api/src/finances-service/routes.go
+=======
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/controller"
+>>>>>>> master:demo-finances-api/src/finances-service/routes.go
 )
 
 func registerRoutes(

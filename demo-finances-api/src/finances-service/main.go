@@ -8,10 +8,10 @@ import (
 
 func main() {
 
-	bookRepository := &BookRepository{}
-	bookService := NewBookService(bookRepository)
+	bookRepository := BookRepository{}
+	bookService := &BookService{BookRepository: bookRepository}
 	bookController := NewBookController(bookService)
-	accountService := NewAccountService(bookService)
+	accountService := &AccountService{BookService: bookService}
 	accountController := NewAccountController(bookService, accountService)
 
 	r := registerRoutes(bookController, accountController)
