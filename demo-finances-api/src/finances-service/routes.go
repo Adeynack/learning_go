@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/controller"
 )
 
 func registerRoutes(

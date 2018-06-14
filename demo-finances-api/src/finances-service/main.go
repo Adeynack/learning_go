@@ -1,9 +1,9 @@
 package main
 
 import (
-	. "github.com/adeynack/learning_go/demo-finances-api/src/app/controller"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/app/service"
-	. "github.com/adeynack/learning_go/demo-finances-api/src/app/repository"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/controller"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/service"
+	. "github.com/adeynack/learning_go/demo-finances-api/src/finances-service/repository"
 )
 
 func main() {
